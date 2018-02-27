@@ -23,20 +23,12 @@
 				</div>
 			</form>
 		</section>
-		<section class="conteudoAluno">
-			<h1 class="titulo">Alunos Vai na Web</h1>
-			<ul>
-				<li v-for="aluno in lista">
-					{{aluno.name}}
-					{{aluno.age}} anos
-					<hr>
-				</li>
-			</ul>
-		</section>
+		<ListaAlunos v-bind:lista="lista"></ListaAlunos>
 	</div>
 </template>
 <script>
 import _ from 'lodash'
+import ListaAlunos from './ListaAlunos.vue'
 export default{
 	name: 'Lista',
 	data (){
@@ -85,6 +77,9 @@ export default{
 
 			return _.filter(lista, aluno => aluno.name.indexOf(filter) >= 0);
 		},
+	},
+	components:{
+		ListaAlunos
 	}
 }
 </script>
