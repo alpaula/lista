@@ -23,7 +23,11 @@
 				</div>
 			</form>
 		</section>
-		<ListaAlunos v-bind:lista="lista"></ListaAlunos>
+		<ListaAlunos
+			:lista="lista"
+			@remove="value => {remove = value}"
+			@removeStudant="value => {removeStudant = value}"
+		></ListaAlunos>
 	</div>
 </template>
 <script>
@@ -33,6 +37,8 @@ export default{
 	name: 'Lista',
 	data (){
 		return{
+			removeStudant: '',
+			remove: false,
 			configs:{
 				orderBy:'name',
 				order:'asc',
@@ -64,6 +70,15 @@ export default{
 					age: '17'
 				},
 			]
+		}
+	},
+	watch:{
+		removeStudant(){
+			if(this.remove === true){
+				this.lista.splice(this.removeStudant, 1)
+				this.remove = false
+				this.removeStudant = ''
+			}
 		}
 	},
 	computed:{

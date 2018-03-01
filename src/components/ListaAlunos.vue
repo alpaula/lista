@@ -2,9 +2,10 @@
 	<section class="conteudoAluno">
 		<h1 class="titulo">Alunos Vai na Web</h1>
 		<ul>
-			<li v-for="aluno in lista">
+			<li v-for="(aluno,index) in lista">
 				{{aluno.name}}
 				{{aluno.age}} anos
+				<button @click="removeStudant(index)">X</button>
 				<hr>
 			</li>
 		</ul>
@@ -21,6 +22,12 @@ export default{
 	},
 	data (){
 
+	},
+	methods:{
+		removeStudant(value){
+			this.$emit('remove', true)
+			this.$emit('removeStudant', value)
+		}
 	}
 }
 </script>
